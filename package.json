@@ -1,0 +1,14 @@
+{
+  "name": "random-ideas",
+  "version": "1.0.0",
+  "description": "just a fun full stack app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
