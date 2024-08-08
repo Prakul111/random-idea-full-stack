@@ -1,6 +1,10 @@
 const express = require ('express');
-const port = 5000;
+require ('dotenv').config();
+const port = process.env.PORT || 5000;
 const app = express();
+const connectDB = require('./config/db');
+
+connectDB();
 
 //Body parser moddleware
 app.use(express.json());
@@ -12,7 +16,7 @@ app.get('/', (req, res) => {
 });
     
 const ideasRouter = require('./routes/ideas');
-app.use('/api/ideas', ideasRouter);
+app.use('/api/ideas', ideasRouter);                                         
 
 
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const Idea = require('../modals/Idea');
 const ideas = [
     {
         id: 1,
@@ -26,8 +26,14 @@ const ideas = [
 ]
 
 //Get all ideas
-router.get('/', (req, res) => {
-    res.json({ sucess:true, data: ideas });
+router.get('/', async (req, res) => {
+    try {
+        const ideas = await Idea.find();
+        res.json({ sucess:true, data: ideas });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({success: false, error: 'something went wrong'});
+    }
 });
 
 
@@ -45,18 +51,22 @@ if (!idea) {
 });
 
 //Add an idea
-router.post('/', (req, res) => {
-    const idea = {
+router.post('/', async (req, res) => {
+    const idea = new Idea ({
         id: ideas.length + 1,
         text: req.body.text,
         tag: req.body.tag,
         username: req.body.username,
         date: new Date().toISOString().slice(0, 10),
-    };
+    });
 
-    ideas.push(idea);
-
-    res.json({sucess: true, data: idea});
+    try {
+        const savedIdea = await idea.save();
+        res.json({sucess: true, data: savedIdea });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({sucess: false, error: 'something went wrong'});
+    }
 });
 
 //Upadte idea
