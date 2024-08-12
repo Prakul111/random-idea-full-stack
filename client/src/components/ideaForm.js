@@ -17,6 +17,14 @@ class IdeaForm  {
             tag: this._form.elements.tag.value,
             username: this._form.elements.username.value,
         } 
+
+        console.log(idea);
+        //Clear Fileds
+        this._form.element.text.value = '';
+        this._form.element.tag.value = '';
+        this._form.element.username.value = '';
+
+        document.dispatchEvent(new Event('closemodal'));
     }
 
     render() {
