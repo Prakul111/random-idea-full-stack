@@ -1,9 +1,16 @@
 import './styles/bootstrap.bundle.min.js'
 import '@fortawesome/fontawesome-free/css/all.css';
 import './styles/main.css';
-import Modal from './components/Modal.js';
+import modal from './components/Modal';
+import IdeaForm from './components/ideaForm';
 
-const modal = new Modal();
+
+const Modal = new modal();
+
+const ideaForm = new IdeaForm();
+ideaForm.render();
+
+
 
 
 
